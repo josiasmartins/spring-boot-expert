@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration // passa a ser escanead pelo spring. Configuração customizado
-@Profile("development")
+@Development
 public class MinhaConfiguration {
 
     @Bean

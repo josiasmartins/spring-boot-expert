@@ -1,4 +1,8 @@
 package io.github.josiasmartins;
 
-public class Animal {
+public interface Animal {
+
+    void fazerBarulho();
+
 }
+
