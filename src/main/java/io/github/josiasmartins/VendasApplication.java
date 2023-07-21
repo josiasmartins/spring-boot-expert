@@ -22,7 +22,7 @@ public class VendasApplication {
 
 //    @Autowired
 //    @Qualifier("applicationName")
-    @Value("${application.name}")
+//    @Value("${application.name}")
     private String applicationName;
 
     @GetMapping("/hello")
