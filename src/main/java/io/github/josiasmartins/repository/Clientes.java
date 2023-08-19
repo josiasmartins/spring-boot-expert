@@ -16,7 +16,16 @@ import java.util.List;
 
 @Repository
 public interface Clientes extends JpaRepository<Cliente, Integer> {
-    List<Cliente> findByNomeLike(String cliente);
+
+    // select c from Cliente c where c.nome like :nome
+    List<Cliente> findByNomeLike(String cliente); // queryMethods: faz a declaracao, numa convensão, o spring transforma em query;
+
+    List<Cliente> findByNomeOrIdOrderById(String nome, Integer id);
+
+    // retorna apenas um registro por nome
+    Cliente findOneByNome(String nome);
+
+    boolean existsByNome(String nome);
 
 //    private static String INSERT = "insert into cliente (nome) values (?)";
 //    private static String SELECTED_ALL = "SELECT * FROM CLIENTE";

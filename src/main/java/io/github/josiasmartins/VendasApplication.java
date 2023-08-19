@@ -30,39 +30,44 @@ public class VendasApplication {
     public CommandLineRunner init(@Autowired Clientes clientes) {
         return args -> {
             System.out.println("Salvando clientes");
-            clientes.save(new Cliente("douglas"));
+            clientes.save(new Cliente("Douglas"));
             clientes.save(new Cliente("outro cliente"));
 
-            List<Cliente> todosClientes = clientes.findAll();
-            // :: metodo de referencia do java 8
-            todosClientes.forEach(System.out::println);
+            boolean existe = clientes.existsByNome("Douglas");
+            System.out.println("Existe um cliente com o nome Douglas? " + existe);
 
-            System.out.println("Atualizado clientes");
-            todosClientes.forEach(c -> {
-                c.setNome(c.getNome() + " atualizado.");
-                clientes.save(c);
-            });
+//            List<Cliente> todosClientes = clientes.findAll();
+//            // :: metodo de referencia do java 8
+//            todosClientes.forEach(System.out::println);
 
-            todosClientes = clientes.findAll();
-            todosClientes.forEach(System.out::println);
 
-            System.out.println("Buscando clientes");
-            clientes.findByNomeLike("cli").forEach(System.out::println);
 
-            todosClientes = clientes.findAll();
-            todosClientes.forEach(System.out::println);
-
-            System.out.println("deletando clientes ");
-            clientes.findAll().forEach(c -> {
-                clientes.delete(c);
-            });
-
-            todosClientes = clientes.findAll();
-            if (todosClientes.isEmpty()) {
-
-            } else {
-                todosClientes.forEach(System.out::println);
-            }
+//            System.out.println("Atualizado clientes");
+//            todosClientes.forEach(c -> {
+//                c.setNome(c.getNome() + " atualizado.");
+//                clientes.save(c);
+//            });
+//
+//            todosClientes = clientes.findAll();
+//            todosClientes.forEach(System.out::println);
+//
+//            System.out.println("Buscando clientes");
+//            clientes.findByNomeLike("cli").forEach(System.out::println);
+//
+//            todosClientes = clientes.findAll();
+//            todosClientes.forEach(System.out::println);
+//
+//            System.out.println("deletando clientes ");
+//            clientes.findAll().forEach(c -> {
+//                clientes.delete(c);
+//            });
+//
+//            todosClientes = clientes.findAll();
+//            if (todosClientes.isEmpty()) {
+//
+//            } else {
+//                todosClientes.forEach(System.out::println);
+//            }
         };
     }
 
