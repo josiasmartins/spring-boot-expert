@@ -42,27 +42,27 @@ public class VendasApplication {
                 c.setNome(c.getNome() + " atualizado.");
                 clientes.atualizar(c);
             });
-//
-//            todosClientes = clientes.obterTodos();
-//            todosClientes.forEach(System.out::println);
-//
-//            System.out.println("Buscando clientes");
-//            clientes.buscarPorNome("cli").forEach(System.out::println);
-//
-//            todosClientes = clientes.obterTodos();
-//            todosClientes.forEach(System.out::println);
-//
-//            System.out.println("deletando clientes ");
-//            clientes.obterTodos().forEach(c -> {
-//                clientes.deletar(c);
-//            });
-//
-//            todosClientes = clientes.obterTodos();
-//            if (todosClientes.isEmpty()) {
-//
-//            } else {
-//                todosClientes.forEach(System.out::println);
-//            }
+
+            todosClientes = clientes.obterTodos();
+            todosClientes.forEach(System.out::println);
+
+            System.out.println("Buscando clientes");
+            clientes.buscarPorNome("cli").forEach(System.out::println);
+
+            todosClientes = clientes.obterTodos();
+            todosClientes.forEach(System.out::println);
+
+            System.out.println("deletando clientes ");
+            clientes.obterTodos().forEach(c -> {
+                clientes.deletar(c);
+            });
+
+            todosClientes = clientes.obterTodos();
+            if (todosClientes.isEmpty()) {
+
+            } else {
+                todosClientes.forEach(System.out::println);
+            }
         };
     }
 
