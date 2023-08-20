@@ -1,14 +1,26 @@
 package io.github.josiasmartins.domain.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "pedido")
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
-    private Cliente cliente;
+    @ManyToOne // usado quando a entidade posui muitos pedidos
+    @JoinColumn(name = "cliente_id") // coluna com a chave estrangeira
+    private Cliente cliente; // chave estrangeira
+
+    @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
+
+    @Column(name = "total", length = 20, precision = 2) // precesion: casas decimais
     private BigDecimal total;
 
     public Integer getId() {
