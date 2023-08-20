@@ -30,73 +30,73 @@ import java.util.List;
 @RestController // diz que é o controlador rest
 public class VendasApplication {
 
-    @Bean
-    public CommandLineRunner init(
-            @Autowired Clientes clientes,
-            @Autowired Pedidos pedidos
-    ) {
-        return args -> {
-            System.out.println("Salvando clientes");
-            clientes.save(new Cliente("Douglas"));
-            clientes.save(new Cliente("outro cliente"));
-
-            Cliente fulano = new Cliente("fulano");
-            clientes.save(fulano);
-
-            Pedido p = new Pedido();
-            p.setCliente(fulano);
-            p.setDataPedido(LocalDateTime.now());
-            p.setTotal(BigDecimal.valueOf(100));
-
-            pedidos.save(p);
-
-//            Cliente cliente = clientes.findClienteFetchPedidos(fulano.getId());
-//            System.out.println(cliente);
-//            System.out.println(cliente.getPedidos());
-
-            pedidos.findByCliente(fulano).forEach(System.out::println);
-
-
-//            List<Cliente> result = clientes.encontrarPorNome("Douglas");
-//            result.forEach(System.out::println);
+//    @Bean
+//    public CommandLineRunner init(
+//            @Autowired Clientes clientes,
+//            @Autowired Pedidos pedidos
+//    ) {
+//        return args -> {
+//            System.out.println("Salvando clientes");
+//            clientes.save(new Cliente("Douglas"));
+//            clientes.save(new Cliente("outro cliente"));
 //
-//            boolean existe = clientes.existsByNome("Douglas");
-//            System.out.println("Existe um cliente com o nome Douglas? " + existe);
-
-//            List<Cliente> todosClientes = clientes.findAll();
-//            // :: metodo de referencia do java 8
-//            todosClientes.forEach(System.out::println);
-
-
-
-//            System.out.println("Atualizado clientes");
-//            todosClientes.forEach(c -> {
-//                c.setNome(c.getNome() + " atualizado.");
-//                clientes.save(c);
-//            });
+//            Cliente fulano = new Cliente("fulano");
+//            clientes.save(fulano);
 //
-//            todosClientes = clientes.findAll();
-//            todosClientes.forEach(System.out::println);
+//            Pedido p = new Pedido();
+//            p.setCliente(fulano);
+//            p.setDataPedido(LocalDateTime.now());
+//            p.setTotal(BigDecimal.valueOf(100));
 //
-//            System.out.println("Buscando clientes");
-//            clientes.findByNomeLike("cli").forEach(System.out::println);
+//            pedidos.save(p);
 //
-//            todosClientes = clientes.findAll();
-//            todosClientes.forEach(System.out::println);
+////            Cliente cliente = clientes.findClienteFetchPedidos(fulano.getId());
+////            System.out.println(cliente);
+////            System.out.println(cliente.getPedidos());
 //
-//            System.out.println("deletando clientes ");
-//            clientes.findAll().forEach(c -> {
-//                clientes.delete(c);
-//            });
+//            pedidos.findByCliente(fulano).forEach(System.out::println);
 //
-//            todosClientes = clientes.findAll();
-//            if (todosClientes.isEmpty()) {
 //
-//            } else {
-//                todosClientes.forEach(System.out::println);
-//            }
-        };
-    }
+////            List<Cliente> result = clientes.encontrarPorNome("Douglas");
+////            result.forEach(System.out::println);
+////
+////            boolean existe = clientes.existsByNome("Douglas");
+////            System.out.println("Existe um cliente com o nome Douglas? " + existe);
+//
+////            List<Cliente> todosClientes = clientes.findAll();
+////            // :: metodo de referencia do java 8
+////            todosClientes.forEach(System.out::println);
+//
+//
+//
+////            System.out.println("Atualizado clientes");
+////            todosClientes.forEach(c -> {
+////                c.setNome(c.getNome() + " atualizado.");
+////                clientes.save(c);
+////            });
+////
+////            todosClientes = clientes.findAll();
+////            todosClientes.forEach(System.out::println);
+////
+////            System.out.println("Buscando clientes");
+////            clientes.findByNomeLike("cli").forEach(System.out::println);
+////
+////            todosClientes = clientes.findAll();
+////            todosClientes.forEach(System.out::println);
+////
+////            System.out.println("deletando clientes ");
+////            clientes.findAll().forEach(c -> {
+////                clientes.delete(c);
+////            });
+////
+////            todosClientes = clientes.findAll();
+////            if (todosClientes.isEmpty()) {
+////
+////            } else {
+////                todosClientes.forEach(System.out::println);
+////            }
+//        };
+//    }
 
     // digite psvm
     public static void main(String[] args) {
