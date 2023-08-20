@@ -21,7 +21,7 @@ public class Pedido {
     @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
 
-    @Column(name = "total", length = 20, precision = 2) // precesion: casas decimais
+    @Column(name = "total", precision = 20, scale = 2) // scale: casas decimais
     private BigDecimal total;
 
     @OneToMany(mappedBy = "pedido")
