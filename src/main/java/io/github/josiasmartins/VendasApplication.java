@@ -30,14 +30,6 @@ import java.util.List;
 @RestController // diz que é o controlador rest
 public class VendasApplication {
 
-    @Bean
-    public CommandLineRunner commandLineRunner(@Autowired Clientes clientes) {
-        return args -> {
-            Cliente c = new Cliente(null, "fulano");
-            clientes.save(c);
-        };
-    }
-
 //    @Bean
 //    public CommandLineRunner init(
 //            @Autowired Clientes clientes,
