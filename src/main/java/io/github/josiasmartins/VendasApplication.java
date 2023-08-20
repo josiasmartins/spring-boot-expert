@@ -1,7 +1,9 @@
 package io.github.josiasmartins;
 
 import io.github.josiasmartins.domain.entity.Cliente;
+import io.github.josiasmartins.domain.entity.Pedido;
 import io.github.josiasmartins.repository.Clientes;
+import io.github.josiasmartins.repository.Pedidos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +15,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootApplication // inicializa uma aplicação spring boot
@@ -27,11 +31,29 @@ import java.util.List;
 public class VendasApplication {
 
     @Bean
-    public CommandLineRunner init(@Autowired Clientes clientes) {
+    public CommandLineRunner init(
+            @Autowired Clientes clientes,
+            @Autowired Pedidos pedidos
+    ) {
         return args -> {
             System.out.println("Salvando clientes");
             clientes.save(new Cliente("Douglas"));
             clientes.save(new Cliente("outro cliente"));
+
+            Cliente fulano = new Cliente("fulano");
+            clientes.save(fulano);
+
+            Pedido p = new Pedido();
+            p.setCliente(fulano);
+            p.setDataPedido(LocalDateTime.now());
+            p.setTotal(BigDecimal.valueOf(100));
+
+            pedidos.save(p);
+
+            Cliente cliente = clientes.findClienteFetchPedidos(fulano.getId());
+            System.out.println(cliente);
+            System.out.println(cliente.getPedidos());
+
 
             List<Cliente> result = clientes.encontrarPorNome("Douglas");
             result.forEach(System.out::println);

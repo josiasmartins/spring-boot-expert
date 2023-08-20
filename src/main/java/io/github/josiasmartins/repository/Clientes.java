@@ -39,6 +39,11 @@ public interface Clientes extends JpaRepository<Cliente, Integer> {
 
     boolean existsByNome(String nome);
 
+    @Query(" select c from Cliente c left join fetch c.pedidos where c.id =:id ") // jpql
+    Cliente findClienteFetchPedidos(@Param("id") Integer id);
+
+
+
 //    private static String INSERT = "insert into cliente (nome) values (?)";
 //    private static String SELECTED_ALL = "SELECT * FROM CLIENTE";
 //    private static String UPDATE = "update cliente set nome = ? where id = ? ";
