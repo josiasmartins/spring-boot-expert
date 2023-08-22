@@ -4,6 +4,7 @@ import io.github.josiasmartins.domain.entity.Cliente;
 import io.github.josiasmartins.domain.entity.ItemPedido;
 import io.github.josiasmartins.domain.entity.Pedido;
 import io.github.josiasmartins.domain.entity.Produto;
+import io.github.josiasmartins.domain.enums.StatusPedido;
 import io.github.josiasmartins.exception.RegraNegocioException;
 import io.github.josiasmartins.repository.Clientes;
 import io.github.josiasmartins.repository.ItemsPedido;
@@ -42,6 +43,7 @@ public class PedidoServiceImpl implements PedidoService {
        pedido.setTotal(dto.getTotal());
        pedido.setDataPedido(LocalDateTime.now());
        pedido.setCliente(cliente);
+       pedido.setStatus(StatusPedido.REALIZADO);
 
        List<ItemPedido> itemsPedido = this.converterItems(pedido, dto.getItems());
        repository.save(pedido);

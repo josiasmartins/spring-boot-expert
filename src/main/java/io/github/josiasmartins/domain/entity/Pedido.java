@@ -1,5 +1,6 @@
 package io.github.josiasmartins.domain.entity;
 
+import io.github.josiasmartins.domain.enums.StatusPedido;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,10 @@ public class Pedido {
 
     @Column(name = "total", precision = 20, scale = 2) // scale: casas decimais
     private BigDecimal total;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
