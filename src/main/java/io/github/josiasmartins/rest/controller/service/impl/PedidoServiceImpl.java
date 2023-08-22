@@ -5,6 +5,7 @@ import io.github.josiasmartins.domain.entity.ItemPedido;
 import io.github.josiasmartins.domain.entity.Pedido;
 import io.github.josiasmartins.domain.entity.Produto;
 import io.github.josiasmartins.domain.enums.StatusPedido;
+import io.github.josiasmartins.exception.PedidoNaoEncontradoExceprion;
 import io.github.josiasmartins.exception.RegraNegocioException;
 import io.github.josiasmartins.repository.Clientes;
 import io.github.josiasmartins.repository.ItemsPedido;
@@ -55,6 +56,16 @@ public class PedidoServiceImpl implements PedidoService {
 
     public Optional<Pedido> obterPedidoCompleto(Integer id) {
         return this.repository.findByIdFetchItens(id);
+    }
+
+    @Transactional
+    public void atualizaStatus(Integer id, StatusPedido statusPedido) {
+        this.repository
+                .findById(id)
+                .map(pedido -> {
+                    pedido.setStatus(statusPedido);
+                    return repository.save(pedido);
+                }).orElseThrow(() -> new PedidoNaoEncontradoExceprion());
     }
 
     private List<ItemPedido> converterItems(Pedido pedido, List<ItemPedidoDTO> items) {

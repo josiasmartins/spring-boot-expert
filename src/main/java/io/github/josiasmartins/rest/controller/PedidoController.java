@@ -2,7 +2,9 @@ package io.github.josiasmartins.rest.controller;
 
 import io.github.josiasmartins.domain.entity.ItemPedido;
 import io.github.josiasmartins.domain.entity.Pedido;
+import io.github.josiasmartins.domain.enums.StatusPedido;
 import io.github.josiasmartins.rest.controller.service.PedidoService;
+import io.github.josiasmartins.rest.dto.AtualizacaoStatusPedidoDTO;
 import io.github.josiasmartins.rest.dto.InformacaoItemPedidoDTO;
 import io.github.josiasmartins.rest.dto.InformacoesPedidoDTO;
 import io.github.josiasmartins.rest.dto.PedidoDTO;
@@ -39,6 +41,13 @@ public class PedidoController {
                 .obterPedidoCompleto(id)
                 .map(p -> this.converter(p))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado"));
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStatus(@PathVariable Integer id, @RequestBody AtualizacaoStatusPedidoDTO dto) {
+        String novoStatus = dto.getNovoStatus();
+        service.atualizaStatus(id, StatusPedido.valueOf(novoStatus));
     }
 
     private InformacoesPedidoDTO converter(Pedido pedido) {
