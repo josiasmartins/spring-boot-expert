@@ -1,6 +1,7 @@
 package io.github.josiasmartins.rest.dto;
 
 import io.github.josiasmartins.domain.entity.ItemPedido;
+import io.github.josiasmartins.validation.NotEmptyList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class PedidoDTO {
     private Integer cliente;
     @NotNull(message = "campo total do pedido é obrigatorio.")
     private BigDecimal total;
+    @NotEmptyList(message = "Pedido não pode ser realizado sem itens.")
     private List<ItemPedidoDTO> items;
 
 }
