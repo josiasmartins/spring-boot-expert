@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Data
@@ -21,6 +22,7 @@ public class Cliente {
     @Column(name = "id") // serve para fazer as definições das colunas
     private Integer id;
     @Column(name = "nome", length = 100)
+    @NotEmpty(message = "Campo é obrigatorio")
     private String nome;
 
     @Column(name = "cpf", length = 11)

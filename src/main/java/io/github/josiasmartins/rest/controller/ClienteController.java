@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.swing.text.html.Option;
+import javax.validation.Valid;
 import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@RequestBody Cliente cliente) {
+    public Cliente save(@RequestBody @Valid Cliente cliente) {
 //        Cliente clienteSalvo = clientes.save(cliente);
 //        return ResponseEntity.ok(clienteSalvo);
         return clientes.save(cliente);
