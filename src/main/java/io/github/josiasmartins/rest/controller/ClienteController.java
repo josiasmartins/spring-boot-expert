@@ -95,7 +95,7 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Integer id, @RequestBody Cliente cliente) {
+    public void update(@PathVariable Integer id, @RequestBody @Valid Cliente cliente) {
 //        return clientes.findById(id)
 //                .map(clienteExistente -> {
 //                    cliente.setId(clienteExistente.getId());
