@@ -1,5 +1,6 @@
 package io.github.josiasmartins.security.jwt;
 
+
 import io.github.josiasmartins.VendasApplication;
 import io.github.josiasmartins.domain.entity.Usuario;
 import io.jsonwebtoken.Claims;
@@ -7,16 +8,17 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
+
+import org.springframework.boot.SpringApplication;
+
 
 @Service
 public class JwtService {
@@ -71,7 +73,7 @@ public class JwtService {
     }
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext contexto = SpringApplication.runVendasApplication.class);
+        ConfigurableApplicationContext contexto = SpringApplication.run(VendasApplication.class);
         JwtService service = contexto.getBean(JwtService.class);
         Usuario usuario = Usuario.builder().login("fulano").build();
         String token = service.gerarToken(usuario);
