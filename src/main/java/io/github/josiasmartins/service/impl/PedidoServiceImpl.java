@@ -1,4 +1,4 @@
-package io.github.josiasmartins.rest.controller.service.impl;
+package io.github.josiasmartins.service.impl;
 
 import io.github.josiasmartins.domain.entity.Cliente;
 import io.github.josiasmartins.domain.entity.ItemPedido;
@@ -11,7 +11,7 @@ import io.github.josiasmartins.repository.Clientes;
 import io.github.josiasmartins.repository.ItemsPedido;
 import io.github.josiasmartins.repository.Pedidos;
 import io.github.josiasmartins.repository.Produtos;
-import io.github.josiasmartins.rest.controller.service.PedidoService;
+import io.github.josiasmartins.service.PedidoService;
 import io.github.josiasmartins.rest.dto.ItemPedidoDTO;
 import io.github.josiasmartins.rest.dto.PedidoDTO;
 import lombok.RequiredArgsConstructor;

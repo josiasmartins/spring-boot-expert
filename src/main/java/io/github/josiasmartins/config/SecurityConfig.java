@@ -1,5 +1,7 @@
 package io.github.josiasmartins.config;
 
+import io.github.josiasmartins.service.impl.UsuarioServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // $2a$12$IFBpq3I3jec4FdfwTDzmGOCdGCCuySnCzKZbeElUFebvdHtD192v2
     // $2a$12$UhyS80bl0Eszdj4st9m/R.TpSNJI2c/hRSKna5t2VXd48zizuToPu
+
+    @Autowired
+    private UsuarioServiceImpl usuarioServiceImpl;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
        return new BCryptPasswordEncoder();
@@ -21,12 +27,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth
+                .userDetailsService(usuarioServiceImpl)
+                .passwordEncoder(passwordEncoder());
+
 //        super.configure(auth);
-        auth.inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder())
-                .withUser("fulano")
-                .password(passwordEncoder().encode("123"))
-                .roles("USER", "ADMIN");
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(passwordEncoder())
+//                .withUser("fulano")
+//                .password(passwordEncoder().encode("123"))
+//                .roles("USER", "ADMIN");
     }
 
     @Override

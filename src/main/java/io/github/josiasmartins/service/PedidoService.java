@@ -1,4 +1,4 @@
-package io.github.josiasmartins.rest.controller.service;
+package io.github.josiasmartins.service;
 
 import io.github.josiasmartins.domain.entity.Pedido;
 import io.github.josiasmartins.domain.enums.StatusPedido;

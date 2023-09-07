@@ -3,7 +3,7 @@ package io.github.josiasmartins.rest.controller;
 import io.github.josiasmartins.domain.entity.ItemPedido;
 import io.github.josiasmartins.domain.entity.Pedido;
 import io.github.josiasmartins.domain.enums.StatusPedido;
-import io.github.josiasmartins.rest.controller.service.PedidoService;
+import io.github.josiasmartins.service.PedidoService;
 import io.github.josiasmartins.rest.dto.AtualizacaoStatusPedidoDTO;
 import io.github.josiasmartins.rest.dto.InformacaoItemPedidoDTO;
 import io.github.josiasmartins.rest.dto.InformacoesPedidoDTO;
