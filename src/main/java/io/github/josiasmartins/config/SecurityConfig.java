@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())
                 .withUser("fulano")
                 .password(passwordEncoder().encode("123"))
-                .roles("USER");
+                .roles("USER", "ADMIN");
     }
 
     @Override
@@ -35,12 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable() // csrf: permite que aja um secuguranca entre uma aplicacao web e back
                 .authorizeRequests()
                     .antMatchers("/api/clientes/**")
-//                        .hasAnyAuthority("MANTER_USUARIO");
-//                    .authenticated()
-                    .permitAll()
+    //                        .hasAnyAuthority("MANTER_USUARIO");
+    //                    .authenticated()
+    //                    .permitAll()
+                        .hasAnyRole("USER", "ADMIN")
+                    .antMatchers("/api/produtos/**")
+                        .hasRole("ADMIN")
+                    .antMatchers("/api/pedidos/**")
+                        .hasAnyRole("USER", "ADMIN")
                 .and()
-                    .formLogin();
-
+                    .httpBasic();
     }
 
     /**
