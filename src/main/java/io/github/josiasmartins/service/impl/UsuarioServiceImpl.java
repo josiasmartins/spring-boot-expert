@@ -1,6 +1,7 @@
 package io.github.josiasmartins.service.impl;
 
 import io.github.josiasmartins.domain.entity.Usuario;
+import io.github.josiasmartins.exception.SenhaInvalidaException;
 import io.github.josiasmartins.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -19,6 +20,16 @@ public class UsuarioServiceImpl implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository repository;
+
+    public UserDetails autenticar(Usuario usuario) {
+        UserDetails user = loadUserByUsername(usuario.getLogin());
+        boolean senhaBatem = encoder.matches(usuario.getSenha(), user.getPassword());
+        if (senhaBatem) {
+            return user;
+        }
+
+        throw new SenhaInvalidaException();
+    }
 
     @Transactional
     public Usuario salvar(Usuario usuario) {
