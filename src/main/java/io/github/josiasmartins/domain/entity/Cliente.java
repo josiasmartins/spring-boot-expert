@@ -19,7 +19,7 @@ import java.util.Set;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // gera o id automaticamente
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") // serve para fazer as definições das colunas
     private Integer id;
     @Column(name = "nome", length = 100)
