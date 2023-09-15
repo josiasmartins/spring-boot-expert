@@ -2,6 +2,7 @@ package io.github.josiasmartins.rest.controller;
 
 import io.github.josiasmartins.domain.entity.Cliente;
 import io.github.josiasmartins.repository.Clientes;
+import io.swagger.annotations.*;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +22,7 @@ import java.util.Optional;
 //@Controller
 @RestController // adiciona @ResponseBody em todos os metodos
 @RequestMapping("/api/clientes")
+@Api("Api de clientes") // diz qual tipo de api para o swagger
 public class ClienteController {
 
     public Clientes clientes;
@@ -41,7 +43,12 @@ public class ClienteController {
 //    }
 
     @GetMapping("/{id}")
-    public Cliente getClienteById(@PathVariable("id") Integer id) {
+    @ApiOperation("Obter detalhes de um cliente")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "cliente encontrado"),
+            @ApiResponse(code = 404, message = "Cliente não encontrado para o ID informado"),
+    })
+    public Cliente getClienteById(@PathVariable("id") @ApiParam("Id do cliente") Integer id) {
 //        Optional<Cliente> cliente = this.clientes.findById(id);
 
         return clientes
@@ -67,6 +74,11 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation("salva um novo cliente")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "cliente salvo com sucesso"),
+            @ApiResponse(code = 404, message = "Cliente não encontrado para o ID informado"),
+    })
     public Cliente save(@RequestBody @Valid Cliente cliente) {
 //        Cliente clienteSalvo = clientes.save(cliente);
 //        return ResponseEntity.ok(clienteSalvo);
