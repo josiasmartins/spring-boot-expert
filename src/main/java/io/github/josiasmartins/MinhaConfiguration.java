@@ -16,9 +16,4 @@ public class MinhaConfiguration {
         };
     }
 
-//    @Bean(name = "applicationName")
-//    public String applicationName() {
-//        return "Sistema de Vendas";
-//    }
-
 }

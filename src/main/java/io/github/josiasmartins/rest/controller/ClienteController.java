@@ -30,17 +30,6 @@ public class ClienteController {
         this.clientes = clientes;
     }
 
-//    @RequestMapping(
-//            value = {"/hello/{nome}", "/api/hello"},
-//            method = RequestMethod.GET,
-//            consumes = { "application/json", "application/xml" }, // tipo de conteudo do metodo pode receber
-//            produces = { "appliction/json", "application/xml" } // tipo de retorno do objeto
-//    )
-//    @ResponseBody
-//    public String helloClientes(@PathVariable("nome") String nomeCliente) {
-//        return String.format("HEllo %s ", nomeCliente);
-//    }
-
     @GetMapping("/{id}")
     @ApiOperation("Obter detalhes de um cliente")
     @ApiResponses({
@@ -57,18 +46,6 @@ public class ClienteController {
                         "Cliente não encontrado"
                 ));
 
-//        if (cliente.isPresent()) {
-////            HttpHeaders headers = new HttpHeaders();
-////            List<String> valuesHeader = new ArrayList<>();
-////            valuesHeader.add("token");
-////            headers.put("Authorization", valuesHeader);
-////            ResponseEntity<Cliente> responseEntity =
-////                    new ResponseEntity<>(cliente.get(), HttpStatus.OK);
-//
-//            return cliente.get();
-//        }
-
-//        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado");
     }
 
     @PostMapping
@@ -87,14 +64,6 @@ public class ClienteController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
-//        Optional<Cliente> cliente = clientes.findById(id);
-//
-//        if (cliente.isPresent()) {
-//            clientes.delete(cliente.get());
-//            return ResponseEntity.noContent().build();
-//        }
-//
-//        return ResponseEntity.notFound().build();
 
         clientes.findById(id)
                 .map(cliente -> {
@@ -107,12 +76,6 @@ public class ClienteController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Integer id, @RequestBody @Valid Cliente cliente) {
-//        return clientes.findById(id)
-//                .map(clienteExistente -> {
-//                    cliente.setId(clienteExistente.getId());
-//                    clientes.save(cliente);
-//                    return ResponseEntity.noContent().build();
-//                }).orElseGet(() -> ResponseEntity.notFound().build());
 
         clientes
                 .findById(id)

@@ -52,15 +52,5 @@ public class UsuarioServiceImpl implements UserDetailsService {
                 .password(usuario.getSenha())
                 .roles(roles)
                 .build();
-//        if (!username.equals("cicrano")) {
-//            throw new UsernameNotFoundException("Usuario não encontrado");
-//        }
-//
-//        return User
-//                .builder()
-//                .username("cicrano")
-//                .password(encoder.encode("123"))
-//                .roles("USER", "ADMIN")
-//                .build();
     }
 }

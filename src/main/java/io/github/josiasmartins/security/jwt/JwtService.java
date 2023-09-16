@@ -34,10 +34,6 @@ public class JwtService {
         Instant instant = dataHoraExpiracao.atZone(ZoneId.systemDefault()).toInstant();
         Date data = Date.from(instant);
 
-//        HashMap<String, Object> claims = new HashMap<>();
-//        claims.put("emaildousuario", "usuario@gmail.com");
-//        claims.put("roles", "admin");
-
         return Jwts
             .builder()
             .setSubject(usuario.getLogin()) // parte do payload
@@ -75,18 +71,6 @@ public class JwtService {
         return (String) obterClaims(token).getSubject();
     }
 
-//    public static void main(String[] args) {
-//        ConfigurableApplicationContext contexto = SpringApplication.run(VendasApplication.class);
-//        JwtService service = contexto.getBean(JwtService.class);
-//        Usuario usuario = Usuario.builder().login("fulano").build();
-//        String token = service.gerarToken(usuario);
-//        System.out.println(token);
-//
-//        boolean isTokenValido = service.tokenValido(token);
-//        System.out.println("O token está valido? " + isTokenValido);
-//
-//        System.out.println(service.obterLoginUsuario(token));
-//    }
 
 }
 

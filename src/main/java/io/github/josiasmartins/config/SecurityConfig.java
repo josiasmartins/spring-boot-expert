@@ -45,13 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(usuarioServiceImpl)
                 .passwordEncoder(passwordEncoder());
-
-//        super.configure(auth);
-//        auth.inMemoryAuthentication()
-//                .passwordEncoder(passwordEncoder())
-//                .withUser("fulano")
-//                .password(passwordEncoder().encode("123"))
-//                .roles("USER", "ADMIN");
     }
 
     @Override
@@ -89,12 +82,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/webjars/**");
     }
 
-    /**
-     * <form method="post">
-     *     <input type="text" name="username">
-     *     <input type="secret" name="password">
-     *     <button type="submit"></button>
-     * </form>
-     */
 
 }
